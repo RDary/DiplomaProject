@@ -1,1 +1,1 @@
-diploma-prject TMS
+diploma-project TMS
