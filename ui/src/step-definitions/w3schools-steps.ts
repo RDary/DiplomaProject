@@ -19,10 +19,10 @@ When(/^the User clicks on the 'Change Theme' button$/, async () => {
 Then(
   /^the User sees that the dark mode and dark code checkboxes are enabled$/,
   async () => {
-    const radioDarkMode = await homePage.getDarkMode();
-    const radioDarkCode = await homePage.getDarkCode();
-    expect(radioDarkMode).toBeChecked;
-    expect(radioDarkCode).toBeChecked;
+    const radioDarkMode = await homePage.getDarkModeCheckBox();
+    const radioDarkCode = await homePage.getDarkCodeCheckBox();
+    expect(radioDarkMode).toBeChecked();
+    expect(radioDarkCode).toBeChecked();
   }
 );
 

@@ -19,11 +19,11 @@ export class HomePage extends BasePage {
     ).click();
   };
 
-  public getDarkMode = async () => {
+  public getDarkModeCheckBox = async () => {
     return await $(`#radio_darkpage`);
   };
 
-  public getDarkCode = async () => {
+  public getDarkCodeCheckBox = async () => {
     return await $(`#radio_darkcode`);
   };
 

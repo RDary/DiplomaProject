@@ -10,10 +10,13 @@ import {
   PHOTO,
 } from '../utils/endpoints';
 import { STATUS_CODE } from '../utils/statusCodes';
-import { GET_USER } from '../methods/get';
-import { TODO_FOR_POST, USER_FOR_POST } from '../methods/post';
-import { TODO_FOR_PUT } from '../methods/put';
-import { PHOTO_FOR_PATCH } from '../methods/patch';
+import {
+  GET_USER,
+  TODO_FOR_POST,
+  USER_FOR_POST,
+  TODO_FOR_PUT,
+  PHOTO_FOR_PATCH,
+} from '../utils/constantsForMethods';
 
 describe('API testing of jsonplaceholder.typicode.com website', () => {
   let response: any;
