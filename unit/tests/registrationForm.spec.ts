@@ -1,63 +1,78 @@
-import { getLogin, getEmail, getPassword } from '../utils/helpers';
 import { RegistrationForm } from '../pageObjects/registrationFormPage';
 import {
-  MIN_LOGIN_LENGTH,
-  EMAIL_DOT,
-  EMAIL_DOG,
-  EMAIL_DOG_INVALID,
-  MIN_PASSWORD_LENGTH,
-  SPACE_INPUT,
-  MAX_PASSWORD_LENGTH,
-  VALID_PASSWORD,
-  INVALID_PASSWORD,
-} from '../utils/expectedValues';
-
-const registrationForm: any = new RegistrationForm(
-  getLogin(),
-  getEmail(),
-  getPassword()
-);
+  minLoginLength,
+  minPasswordLength,
+  maxPasswordLength,
+  emailSeparator,
+  emailDot,
+  VALUES_POSITIVE,
+  EXPECTED_VALUES_POSITIVE,
+  VALUES_NEGATIVE,
+  EXPECTED_VALUES_NEGATIVE,
+} from '../utils/constants';
 
 describe('Registration Form testing', () => {
-  test('Enter in the login field min 1 symbol', () => {
-    expect(registrationForm.loginInput().length).toBeGreaterThan(
-      MIN_LOGIN_LENGTH
+  test('Check that the login field contains correct value', () => {
+    expect(RegistrationForm.loginInput(VALUES_POSITIVE.login)).toEqual(
+      EXPECTED_VALUES_POSITIVE.login
     );
   });
-  test('Check that the login field is not empty', () => {
-    expect(registrationForm.loginInput()).not.toBeNull();
-  });
-  test('Check that the email field contains @', () => {
-    expect(registrationForm.emailInput()).toContain(EMAIL_DOG);
-  });
-  test('Check that the email field contains dot', () => {
-    expect(registrationForm.emailInput()).toContain(EMAIL_DOT);
-  });
-  test('Negative: Check that the email is not contain @@', () => {
-    expect(registrationForm.emailInput()).not.toContain(EMAIL_DOG_INVALID);
-  });
-  test('Check that the password is at least 8 characters', () => {
-    expect(registrationForm.password.length).toBeGreaterThanOrEqual(
-      MIN_PASSWORD_LENGTH
+
+  test('Check that the login field contains incorrect value', () => {
+    expect(RegistrationForm.loginInput(VALUES_NEGATIVE.login)).not.toEqual(
+      EXPECTED_VALUES_NEGATIVE.login
     );
   });
-  test('Negative: Check that the password is  not contains space', () => {
-    expect(registrationForm.password).not.toContain(SPACE_INPUT);
-  });
-  test('Negative: Check that the password is no longer than 20 characters', () => {
-    expect(registrationForm.password.length).not.toBeGreaterThan(
-      MAX_PASSWORD_LENGTH
-    );
-  });
-  test('Check that the Confirm password field is valid password', () => {
-    let passwordAndConfirmedPassword: string = registrationForm.password;
+
+  test('Check that the login field is at least 1 symbol', () => {
     expect(
-      registrationForm.confirmPasswordInput(passwordAndConfirmedPassword)
-    ).toEqual(VALID_PASSWORD);
+      RegistrationForm.loginInput(VALUES_POSITIVE.login).length
+    ).toBeGreaterThan(minLoginLength);
   });
-  test('Check that the Confirm password field is invalid password', () => {
-    expect(registrationForm.confirmPasswordInput(getPassword())).toEqual(
-      INVALID_PASSWORD
+
+  test('Check that the login field is not empty', () => {
+    expect(RegistrationForm.loginInput(VALUES_POSITIVE.login)).not.toBeNull();
+  });
+
+  test('Check that the email field contains @', () => {
+    expect(RegistrationForm.emailInput(VALUES_POSITIVE.email)).toContain(
+      emailSeparator
     );
+  });
+
+  test('Check that the email field not contains @', () => {
+    expect(RegistrationForm.emailInput(VALUES_NEGATIVE.email)).not.toBe(
+      emailSeparator
+    );
+  });
+
+  test('Check that the email field contains dot', () => {
+    expect(RegistrationForm.emailInput(VALUES_POSITIVE.email)).toContain(
+      emailDot
+    );
+  });
+
+  test('Check that the password is at least 8 characters', () => {
+    expect(
+      RegistrationForm.passwordInput(VALUES_POSITIVE.password).length
+    ).toBeGreaterThanOrEqual(minPasswordLength);
+  });
+
+  test('Check that the password is no longer than 20 characters', () => {
+    expect(
+      RegistrationForm.passwordInput(VALUES_POSITIVE.password).length
+    ).not.toBeGreaterThan(maxPasswordLength);
+  });
+
+  test('Check that the Confirm password field contains valid password', () => {
+    expect(
+      RegistrationForm.confirmPasswordInput(VALUES_POSITIVE.password)
+    ).toContain(EXPECTED_VALUES_POSITIVE.password);
+  });
+
+  test('Check that the Confirm password field contains invalid password', () => {
+    expect(
+      RegistrationForm.confirmPasswordInput(VALUES_NEGATIVE.password)
+    ).not.toEqual(EXPECTED_VALUES_NEGATIVE.password);
   });
 });

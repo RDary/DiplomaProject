@@ -1,9 +1,0 @@
-export const MIN_LOGIN_LENGTH: number = 1;
-export const EMAIL_DOG: string = '@';
-export const EMAIL_DOT: string = '.';
-export const EMAIL_DOG_INVALID: string = '@@';
-export const MIN_PASSWORD_LENGTH: number = 8;
-export const MAX_PASSWORD_LENGTH: number = 20;
-export const SPACE_INPUT: string = ' ';
-export const VALID_PASSWORD: string = 'Valid password';
-export const INVALID_PASSWORD: string = 'Invalid password';

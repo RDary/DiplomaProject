@@ -1,25 +1,54 @@
+import { specialSymbols, emailSeparator } from '../utils/constants';
 export class RegistrationForm {
-  constructor(
-    public login: string,
-    public email: string,
-    public password: string
-  ) {
-    this.login = login;
-    this.email = email;
-    this.password = password;
+  static loginInput(login: string): string {
+    const arrayLogin = login.split('');
+    const checkArrLogin = arrayLogin.filter(
+      (item: string) => !specialSymbols.includes(item)
+    );
+    if (JSON.stringify(checkArrLogin) === JSON.stringify(arrayLogin)) {
+      return login;
+    } else {
+      return 'Invalid symbols';
+    }
   }
 
-  public loginInput(): string {
-    return this.login;
+  static emailInput(email: string): string {
+    const arrayEmail = email.split('');
+    if (!arrayEmail.includes(emailSeparator)) {
+      return `Missing symbol ${emailSeparator}`;
+    }
+    const checkArrEmail = arrayEmail.filter(
+      (item: string) => !specialSymbols.includes(item)
+    );
+    if (JSON.stringify(checkArrEmail) === JSON.stringify(arrayEmail)) {
+      return email;
+    } else {
+      return 'Invalid symbols';
+    }
   }
 
-  public emailInput(): string {
-    return this.email;
+  static passwordInput(password: string): string {
+    const arrayPassword = password.split('');
+    const checkArrPassword = arrayPassword.filter(
+      (item: string) => !specialSymbols.includes(item)
+    );
+    if (JSON.stringify(checkArrPassword) === JSON.stringify(arrayPassword)) {
+      return password;
+    } else {
+      return 'Invalid symbols';
+    }
   }
 
-  public confirmPasswordInput(message: string) {
-    if (this.password === message) {
-      return 'Valid password';
+  static confirmPasswordInput(confirmPassword: string) {
+    const confirmArrayPassword = confirmPassword.split('');
+    const checkConfirmArrayPasswordInput = confirmArrayPassword.filter(
+      (item: string) => !specialSymbols.includes(item)
+    );
+    if (
+      JSON.stringify(checkConfirmArrayPasswordInput) ===
+      JSON.stringify(confirmArrayPassword)
+    ) {
+      return confirmPassword;
     } else {
       return 'Invalid password';
     }
