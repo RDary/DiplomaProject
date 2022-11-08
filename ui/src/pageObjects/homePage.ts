@@ -7,10 +7,6 @@ export class HomePage extends BasePage {
     super();
   }
 
-  // public clickOnAcceptAllButton = async () => {
-  //   await (await $('//div[@class="sn-b-def sn-blue"]')).click();
-  // };
-
   public clickOnChangeThemeButton = async () => {
     await (
       await $(

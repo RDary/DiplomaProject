@@ -3,8 +3,8 @@ import {
   ALL_USERS,
   ALL_TODOS,
   ALL_POSTS,
-  USER_10,
-  USER_11,
+  USER_TEN,
+  USER_ELEVEN,
   TODO,
   POST,
   PHOTO,
@@ -32,7 +32,7 @@ describe('API testing of jsonplaceholder.typicode.com website', () => {
   test('GET method, should get tenth user', async () => {
     const { id, name } = GET_USER;
     try {
-      response = await superagent.get(USER_10);
+      response = await superagent.get(USER_TEN);
     } catch (err: any) {
       throw new Error(err.message);
     }
@@ -43,7 +43,7 @@ describe('API testing of jsonplaceholder.typicode.com website', () => {
 
   test('GET method with 404 status code, try to get eleventh user', async () => {
     try {
-      response = await superagent.get(USER_11);
+      response = await superagent.get(USER_ELEVEN);
     } catch (err: any) {
       expect(err.status).toBe(STATUS_CODE.NOT_FOUND);
     }

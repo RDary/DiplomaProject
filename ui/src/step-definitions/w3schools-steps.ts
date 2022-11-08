@@ -7,12 +7,6 @@ import { FOOTER_ITEMS } from '../support/types';
 Given(/^the User opens web page (.+)$/, async (webAddress) => {
   await browser.url(webAddress);
 });
-// When(
-//   /^the User clicks on the 'Accept all & visit the site' button$/,
-//   async () => {
-//     await homePage.clickOnAcceptAllButton();
-//   }
-// );
 When(/^the User clicks on the 'Change Theme' button$/, async () => {
   await homePage.clickOnChangeThemeButton();
 });

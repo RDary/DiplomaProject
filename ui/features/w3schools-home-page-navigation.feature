@@ -4,7 +4,6 @@ Feature: Get w3schools tests
    @changeTheme
    Scenario: The user visits the Home page
        Given the User opens web page https://www.w3schools.com
-       # When the User clicks on the 'Accept all & visit the site' button
        When the User clicks on the 'Change Theme' button
        Then the User sees that the dark mode and dark code checkboxes are enabled
 
